@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Providers } from "./components/theme-components/providers";
+import { Providers } from "../components/theme-components/providers";
 import localFont from "next/font/local";
 
 const notoSans = localFont({
@@ -31,11 +31,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${notoSans.variable} h-full antialiased`}
-    >
+    <html lang="en" suppressHydrationWarning className={`${notoSans.variable}`}>
       <body className="min-h-full flex flex-col font-sans antialiased">
         <Providers>{children}</Providers>
       </body>

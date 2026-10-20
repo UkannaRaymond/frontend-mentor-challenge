@@ -1,13 +1,11 @@
-"use client";
-
-import { ThemeSwitcher } from "./components/theme-components/theme-switcher";
+import { Header } from "@/components/card/header";
+import { ExtensionList } from "@/components/card/extension-list";
 
 export default function HomePage() {
   return (
-    <main className="p-8">
-      <h1 className="mb-4 text-2xl font-bold">My Next.js App</h1>
-
-      <ThemeSwitcher />
+    <main className="mx-auto max-w-300 px-4 py-8 md:py-10">
+      <Header />
+      <ExtensionList />
     </main>
   );
 }

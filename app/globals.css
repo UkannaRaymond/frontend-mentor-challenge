@@ -12,6 +12,12 @@
   --ink-muted: hsl(226, 11%, 37%);
   --line: hsl(217, 61%, 90%);
   --control: hsl(0, 0%, 93%);
+  --ring: hsl(3, 71%, 56%);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
 }
 
 .dark {
@@ -23,6 +29,7 @@
   --ink-muted: hsl(0, 0%, 78%);
   --line: hsl(226, 11%, 37%);
   --control: hsl(225, 23%, 24%);
+  --ring: hsl(3, 86%, 64%);
 }
 
 @theme inline {
