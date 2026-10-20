@@ -22,7 +22,7 @@ export function ExtensionCard({
       <div className="flex flex-1 items-start gap-4">
         <ExtensionAvatar name={extension.name} src={extension.avatarUrl} />
         <div className="flex flex-col gap-2">
-          <Card.Title className="text-xl font-medium text-ink">
+          <Card.Title className="text-[16px] font-medium font-bold text-ink">
             {extension.name}
           </Card.Title>
           <Card.Description className="text-ink-muted">
@@ -37,7 +37,7 @@ export function ExtensionCard({
           isDisabled={disabled}
           aria-label={`Remove ${extension.name}`}
           onPress={() => onRemove(extension.id)}
-          className="rounded-full"
+          className="rounded-full border-line-strong"
         >
           Remove
         </Button>

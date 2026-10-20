@@ -27,7 +27,7 @@ export function ThemeSwitcher() {
       variant="secondary"
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
       onPress={() => setTheme(isDark ? "light" : "dark")}
-      className="size-11 rounded-lg bg-control"
+      className="size-11 rounded-lg [--button-bg:var(--control)] [--button-bg-hover:var(--control-hover)]"
     >
       <Image
         src={isDark ? "/images/icon-sun.svg" : "/images/icon-moon.svg"}

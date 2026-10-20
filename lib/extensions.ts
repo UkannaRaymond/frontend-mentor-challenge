@@ -58,14 +58,13 @@ export function useToggleExtension() {
 
       for (const [key, data] of snapshot) {
         if (!data) continue;
-        const listFilter = key[2] as Filter; // keys look like ["extensions", "list", filter]
+        const listFilter = key[2] as Filter;
 
         const updated = data.map((extension) =>
           extension.id === id ? { ...extension, status } : extension,
         );
 
         // On "all" keep everything. On "active"/"inactive", drop whatever
-        // no longer matches (this removes the item that just changed).
         const next =
           listFilter === "all"
             ? updated

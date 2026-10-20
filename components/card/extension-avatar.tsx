@@ -24,7 +24,6 @@ export function ExtensionAvatar({ name, src }: { name: string; src: string }) {
       width={48}
       height={48}
       onError={() => setFailed(true)}
-      unoptimized
       className="size-12 shrink-0 rounded-xl object-cover"
     />
   );

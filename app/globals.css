@@ -13,6 +13,7 @@
   --line: hsl(217, 61%, 90%);
   --control: hsl(0, 0%, 93%);
   --ring: hsl(3, 71%, 56%);
+  --line-strong: hsl(0, 0%, 78%);
 }
 
 :focus-visible {
@@ -30,6 +31,7 @@
   --line: hsl(226, 11%, 37%);
   --control: hsl(225, 23%, 24%);
   --ring: hsl(3, 86%, 64%);
+  --line-strong: hsl(226, 11%, 37%);
 }
 
 @theme inline {
@@ -39,6 +41,7 @@
   --color-line: var(--line);
   --font-sans: var(--font-noto-sans);
   --color-control: var(--control);
+  --color-line-strong: var(--line-strong);
 }
 
 body {

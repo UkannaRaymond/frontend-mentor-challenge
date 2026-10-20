@@ -4,9 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
-  images: {
-    remotePatterns: [{ protocol: "https", hostname: "example.com" }],
-  },
+  images: { remotePatterns: [{ protocol: "https", hostname: "example.com" }] },
   turbopack: {
     rules: {
       "*.css": {
