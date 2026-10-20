@@ -1,27 +1,41 @@
 @import "tailwindcss";
 @import "@heroui/styles";
 
+@custom-variant dark (&:is(.dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --accent: hsl(3, 77%, 44%);
+  --accent-foreground: hsl(200, 60%, 99%);
+  --page-gradient: linear-gradient(180deg, #ebf2fc 0%, #eef8f9 100%);
+  --surface: hsl(200, 60%, 99%);
+  --ink: hsl(227, 75%, 14%);
+  --ink-muted: hsl(226, 11%, 37%);
+  --line: hsl(217, 61%, 90%);
+  --control: hsl(0, 0%, 93%);
+}
+
+.dark {
+  --accent: hsl(3, 86%, 64%);
+  --accent-foreground: hsl(227, 75%, 14%);
+  --page-gradient: linear-gradient(180deg, #040918 0%, #091540 100%);
+  --surface: hsl(226, 25%, 17%);
+  --ink: hsl(200, 60%, 99%);
+  --ink-muted: hsl(0, 0%, 78%);
+  --line: hsl(226, 11%, 37%);
+  --control: hsl(225, 23%, 24%);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --font-sans: var(--font-noto-sans);
+  --color-control: var(--control);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--page-gradient);
+  color: var(--ink);
+  min-height: 100dvh;
 }
