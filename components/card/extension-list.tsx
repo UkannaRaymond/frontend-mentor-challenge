@@ -51,7 +51,11 @@ export function ExtensionList() {
               variant={filter === value ? "primary" : "outline"}
               aria-pressed={filter === value}
               onPress={() => setFilter(value)}
-              className="rounded-full px-5"
+              className={
+                filter === value
+                  ? "rounded-full px-5 hover:bg-[hsl(3,71%,56%)]! dark:hover:bg-[hsl(3,86%,64%)]!"
+                  : "rounded-full border-line-strong bg-surface px-5 text-ink hover:bg-control! dark:border-line dark:bg-control dark:hover:bg-line!"
+              }
             >
               {label}
             </Button>
@@ -96,8 +100,8 @@ export function ExtensionList() {
               <ExtensionCard
                 extension={extension}
                 disabled={isBusy(extension.id)}
-                onToggle={handleToggle}
-                onRemove={(id) => remove.mutate(id)}
+                onToggleAction={handleToggle}
+                onRemoveAction={(id) => remove.mutate(id)}
               />
             </li>
           ))}
