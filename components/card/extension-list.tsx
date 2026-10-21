@@ -20,8 +20,7 @@ export function ExtensionList() {
   const filter = useFilterStore((s) => s.filter);
   const setFilter = useFilterStore((s) => s.setFilter);
 
-  const { data, isPending, isError, refetch, isFetching } =
-    useExtensions(filter);
+  const { data, isPending, isError, refetch } = useExtensions(filter);
   const toggle = useToggleExtension();
   const remove = useRemoveExtension();
 
@@ -90,11 +89,7 @@ export function ExtensionList() {
             : `No ${filter} extensions.`}
         </p>
       ) : (
-        <ul
-          className={`grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 ${
-            isFetching ? "opacity-70" : ""
-          }`}
-        >
+        <ul className={`grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3`}>
           {data.map((extension) => (
             <li key={extension.id} className="flex">
               <ExtensionCard

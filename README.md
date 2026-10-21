@@ -12,12 +12,8 @@ This is a solution to the [Browser extensions manager UI challenge on Frontend M
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
   - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
   - [AI Collaboration](#ai-collaboration)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 
@@ -32,14 +28,16 @@ Users should be able to:
 - View the optimal layout for the interface depending on their device's screen size
 - See hover and focus states for all interactive elements on the page
 
+The extensions are loaded from the provided REST API, and the UI handles loading, error and empty states.
+
 ### Screenshot
 
 ![](./screenshot.jpg)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [GitHub repository](https://github.com/UkannaRaymond/frontend-mentor-challenge)
+- Live Site URL: [Live demo](https://frontend-mentor-challenge-lilac.vercel.app)
 
 ## My process
 
@@ -48,65 +46,46 @@ Users should be able to:
 - Semantic HTML5 markup
 - CSS custom properties
 - [Next.js](https://nextjs.org/) - React framework
-- HeroUi
-- Zustand
-- Tanstack Query
+- [HeroUI](https://www.heroui.com/) - UI component library
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [Zustand](https://zustand-demo.pmnd.rs/) - Filter state
+- [TanStack Query](https://tanstack.com/query) - Server state and data fetching
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+- **Optimistic updates with rollback.** Toggling and removing an extension updates the UI immediately through TanStack Query's `onMutate`. If the request fails, the cached lists are restored from a snapshot, and after every mutation the lists are re-synced with the server.
+- **Sending `multipart/form-data`.** The API's `PATCH` endpoint expects form data, so the request helper only sets a JSON `Content-Type` header when the body is not a `FormData` object. This lets the browser add the correct multipart boundary itself.
+- **Handling bad image URLs from the API.** Most `avatarUrl` values point to `example.com` files that don't exist. The avatar component falls back to a colored tile with the extension's initial when an image fails to load.
+- **Theming with CSS variables.** Light and dark colors are defined as custom properties on `:root` and `.dark`, then exposed to Tailwind, so components don't need separate dark-mode color classes.
 
-To see how you can add code snippets, see below:
+```ts
+// Only set a JSON Content-Type when the body is not FormData
+const isFormData = init.body instanceof FormData;
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-
-```js
-const proudOfThisFunc = () => {
-  console.log("🎉");
-};
+const res = await fetch(`${BASE_URL}${path}`, {
+  ...init,
+  headers:
+    init.body && !isFormData
+      ? { "Content-Type": "application/json", ...init.headers }
+      : init.headers,
+});
 ```
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
-
-### Useful resources
-
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- Add automated tests for the filter and the toggle and remove flows.
+- Improve the first-load experience when the hosted API is waking up from sleep.
+- Learn more about HeroUI's theming so fewer style overrides are needed.
 
 ### AI Collaboration
 
-Describe how you used AI tools (if any) during this project. This helps demonstrate your ability to work effectively with AI assistants.
+I used Claude as a reviewer and debugging assistant.
 
-- What tools did you use (e.g., ChatGPT, Claude, GitHub Copilot)?
-- How did you use them (e.g., debugging, generating boilerplate, brainstorming solutions)?
-- What worked well? What didn't?
-
-**Note: Delete this note and the content above if you didn't use AI, or replace with your own experience.**
+- **How I used it:** to compare my implementation against the design files and style guide, to check my API integration against the Swagger response, and to help debug the avatar fallback and the hover and focus styles.
+- **What worked well:** it was useful for spotting differences from the design and edge cases in the API handling, such as the empty-body `DELETE` response and broken image URLs.
+- **What I had to check myself:** its suggestions about HeroUI's internal class names and attributes couldn't be taken as given, so I verified them in the browser's inspector before keeping them.
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+- GitHub - [@UkannaRaymond](https://github.com/UkannaRaymond)
+- Frontend Mentor - [@UkannaRaymond](https://www.frontendmentor.io/profile/UkannaRaymond)
